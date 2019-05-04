@@ -1,22 +1,26 @@
 <template>
-  <div id="app">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <Company :company="company"/>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import Company from "./components/Company.vue";
+import companyEmployees from "./companyEmployees";
 
 export default {
   name: "anatta-design-app",
   components: {
-    HelloWorld
+    Company
+  },
+  data() {
+    return {
+      company: companyEmployees
+    };
   }
 };
 </script>
 
 <style>
-#app {
+.anatta-design-app {
   text-align: center;
   margin-top: 60px;
 }
