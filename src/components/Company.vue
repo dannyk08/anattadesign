@@ -1,7 +1,12 @@
 <template>
   <main>
     <h1>Company</h1>
-    <Employee v-for="employee in company.employees" :key="employee.id" :employee="employee"/>
+    <Employee
+      :isNode="false"
+      v-for="employee in company.employees"
+      :key="employee.id"
+      :employee="employee"
+    />
   </main>
 </template>
 
