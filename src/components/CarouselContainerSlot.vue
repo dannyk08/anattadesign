@@ -3,12 +3,12 @@
     <div class="carousel-container-slot">
       <slot>
         <EmployeeCardCarouselSlot
-          :slotName="employee.id"
-          :isCarousel="!!employee.employees && employee.employees.length > 3"
+          :slotName="currentEmployee.id"
+          :isCarousel="!!employees && employees.length > 3"
         >
           <EmployeeCard
             :key="childEmployee.id"
-            v-for="(childEmployee, index) in employee.employees"
+            v-for="(childEmployee, index) in employees"
             :employeeInfo="childEmployee.info"
             :showEmployees="false"
             @toggleEmployees="toggleEmployees(index)"
@@ -17,9 +17,9 @@
       </slot>
     </div>
     <ad-carousel-container-slot
-      v-if="currentIndex !== null && containsEmployees(employee.employees[currentIndex])"
-      :containerName="employee.employees[currentIndex].id"
-      :employee="employee.employees[currentIndex]"
+      v-if="employeeContainsEmployees"
+      :containerName="currentEmployee.id"
+      :employees="currentEmployee.employees"
     />
   </div>
 </template>
@@ -33,25 +33,20 @@ export default {
   props: {
     containerName: {
       type: Number,
-      required: true,
       default() {
         return 0;
       }
     },
-    employee: {
-      type: Object,
-      required: true,
+    employees: {
+      type: Array,
       default() {
-        return {
-          employees: [],
-          id: null
-        };
+        return [];
       }
     }
   },
   data() {
     return {
-      currentIndex: null
+      currentEmployeeIndex: null
     };
   },
   components: {
@@ -60,10 +55,25 @@ export default {
   },
   methods: {
     toggleEmployees(index) {
-      this.currentIndex = index;
+      this.currentEmployeeIndex = index;
+    }
+  },
+  computed: {
+    currentEmployee() {
+      if (this.currentEmployeeIndex === null) {
+        return {
+          employees: [],
+          id: null
+        };
+      }
+      return this.employees[this.currentEmployeeIndex];
     },
-    containsEmployees(employee = { employees: [] }) {
-      return employee.employees && employee.employees.length;
+    employeeContainsEmployees() {
+      if (this.currentEmployeeIndex === null) return false;
+      return (
+        this.currentEmployee.employees &&
+        !!this.currentEmployee.employees.length
+      );
     }
   }
 };

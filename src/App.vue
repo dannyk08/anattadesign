@@ -4,7 +4,7 @@
 
 <script>
 import Company from "./components/Company.vue";
-import companyEmployees from "./companyEmployees";
+import company from "./companyEmployees";
 
 export default {
   name: "anatta-design-app",
@@ -13,8 +13,7 @@ export default {
   },
   data() {
     return {
-      // needs to be reset
-      company: companyEmployees.employees[0]
+      company
     };
   }
 };
