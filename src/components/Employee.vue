@@ -1,10 +1,10 @@
 <template>
   <div class="employee" :class="{'is-node': isNode}">
-    <section class="employee__info" :class="{'active': showEmployees}" @click="togggleEmployees()">
-      <header class="employee__info-header">
-        <h4>Employee{{employee.id}}</h4>
-      </header>
-    </section>
+    <EmployeeCard
+      @toggleEmployees="toggleEmployees()"
+      :showEmployees="showEmployees"
+      :employeeInfo="employee.info"
+    />
     <main v-if="employee.employees.length && showEmployees" class="employee__employees">
       <ad-employee
         :isNode="true"
@@ -17,8 +17,13 @@
 </template>
 
 <script>
+import EmployeeCard from "./EmployeeCard.vue";
+
 export default {
   name: "ad-employee",
+  components: {
+    EmployeeCard
+  },
   props: {
     isNode: {
       type: Boolean,
@@ -29,7 +34,8 @@ export default {
       required: true,
       default() {
         return {
-          employees: []
+          employees: [],
+          info: {}
         };
       }
     }
@@ -40,7 +46,7 @@ export default {
     };
   },
   methods: {
-    togggleEmployees() {
+    toggleEmployees() {
       if (this.employee.employees.length) {
         this.showEmployees = !this.showEmployees;
       }
@@ -72,6 +78,7 @@ $node-border-height: 1px;
       position: absolute;
       top: 0;
       z-index: -1;
+      left: 50%;
       transform: translateX(-50%);
     }
 
@@ -91,6 +98,9 @@ $node-border-height: 1px;
     &:last-of-type::after {
       width: 50%;
       right: 50%;
+    }
+    &:only-of-type::after {
+      width: 0;
     }
   }
 

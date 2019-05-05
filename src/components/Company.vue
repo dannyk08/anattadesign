@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <h1>Company</h1>
+  <main class="company">
+    <h1 class="company__name">Client Company</h1>
     <Employee
       :isNode="false"
       v-for="employee in company.employees"
@@ -26,4 +26,12 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.company {
+  &__name {
+    text-align: center;
+  }
+}
+</style>
 
