@@ -1,10 +1,10 @@
 <template>
   <section class="employee__info" :class="{'active': showEmployees}" @click="toggleEmployees()">
     <header class="employee__info-header">
-      <h4>{{employeeInfo.department}}</h4>
+      <h5>{{employeeInfo.department}}</h5>
     </header>
     <main class="employee__info-main">
-      <h4 class="employee__info-main--name">{{employeeInfo.name}}</h4>
+      <h5 class="employee__info-main--name">{{employeeInfo.name}}</h5>
       <p class="employee__info-main--title">{{employeeInfo.title}}</p>
     </main>
   </section>
@@ -33,46 +33,44 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// TODO: should make these global css vars
-$node-highlight-color: gray;
-$node-highlight-color-lighter: lighten(gray, 10%);
-$node-highlight-height: 2rem;
-$node-border-height: 1px;
-$node-header-background-color: #008f88;
-
 .employee__info {
-  min-width: 15rem;
-  min-height: 15rem;
-  border: $node-border-height solid $node-highlight-color;
+  min-width: 17.5rem;
+  min-height: 12.5rem;
+  border: var(--node-border-height) solid var(--gray-color-lighter);
   display: flex;
   flex-direction: column;
   position: relative;
   margin-left: 1rem;
   margin-right: 1rem;
+  box-shadow: 0rem 1rem 1rem -1.5rem var(--gray-color-lighter),
+    0rem 0.25rem 1rem -0.5rem var(--gray-color);
   z-index: 1;
 
   &.active::after {
     content: "";
-    width: $node-border-height;
-    height: $node-highlight-height;
-    background: $node-highlight-color;
+    width: var(--node-border-height);
+    height: var(--node-highlight-height);
+    background: var(--gray-color-light);
     position: absolute;
-    bottom: calc(-#{$node-highlight-height} - #{$node-border-height});
+    bottom: calc(
+      -1 * calc(var(--node-highlight-height) -
+            calc(-1 * var(--node-border-height)))
+    );
     z-index: -1;
     left: 50%;
     transform: translateX(-50%);
   }
 
   &.active &-header {
-    background: $node-header-background-color;
+    background: var(--node-header-background-color);
     color: white;
-    border-bottom-color: $node-header-background-color;
+    border-bottom-color: var(--node-header-background-color);
   }
 
   &-main,
   &-header {
     text-align: center;
-    border-bottom: 1px solid $node-highlight-color;
+    border-bottom: 1px solid var(--gray-color-lighter);
   }
 
   &-main {
@@ -83,8 +81,8 @@ $node-header-background-color: #008f88;
   }
 
   &-main--title {
-    margin-top: -1rem;
-    color: $node-highlight-color-lighter;
+    margin-top: -0.5rem;
+    color: var(--gray-color-light);
   }
 }
 </style>

@@ -19,9 +19,32 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
 .anatta-design-app {
   text-align: center;
   margin-top: 60px;
+}
+</style>
+
+<style lang="scss">
+$gray: gray;
+$green: #008f88;
+
+$variables-map: (
+  gray-color: $gray,
+  gray-color-light: lighten($gray, 10%),
+  gray-color-lighter: lighten($gray, 25%),
+  green-color: $green,
+  green-color-light: lighten($green, 10%),
+  green-color-lighter: lighten($green, 25%),
+  node-highlight-height: 2rem,
+  node-border-height: 1px,
+  node-header-background-color: $green
+);
+
+:root {
+  @each $key, $value in $variables-map {
+    --#{$key}: #{$value};
+  }
 }
 </style>
