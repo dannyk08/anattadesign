@@ -29,6 +29,9 @@ export default {
 
 <style lang="scss" scoped>
 .company {
+  display: flex;
+  flex-direction: column;
+
   &__name {
     text-align: center;
   }

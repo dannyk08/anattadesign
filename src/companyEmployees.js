@@ -5,47 +5,47 @@ export default {
       info: {
         department: "Company",
         name: "Melissa Janus",
-        title: ""
+        title: "Chairman"
       },
       employees: [
         {
           id: 1,
           info: {
-            department: "",
+            department: "Executive",
             name: "Silvius Haurvatat",
-            title: ""
+            title: "CEO"
           },
           employees: [
             {
               id: 11,
               info: {
-                department: "",
+                department: "Engineering",
                 name: "Ishtar Jamsheed",
-                title: ""
+                title: "Vice President of Engineering"
               },
               employees: [
                 {
                   id: 111,
                   info: {
-                    department: "",
+                    department: "Engineering",
                     name: "Metztli Maia",
-                    title: ""
+                    title: "Director of Engineering"
                   },
                   employees: [
                     {
                       id: 1111,
                       info: {
-                        department: "",
+                        department: "Engineering",
                         name: "Gopala Volos",
-                        title: ""
+                        title: "Software Engineer"
                       },
                       employees: [
                         {
                           id: 11111,
                           info: {
-                            department: "",
+                            department: "Engineering",
                             name: "Medousa Kausalya",
-                            title: ""
+                            title: "Jr. Software Engineer"
                           },
                           employees: []
                         }
@@ -58,34 +58,34 @@ export default {
             {
               id: 12,
               info: {
-                department: "",
+                department: "Innovation",
                 name: "Brynhildr Priapus",
-                title: ""
+                title: "Programmatic Content Marketing"
               },
               employees: []
             },
             {
               id: 13,
               info: {
-                department: "",
+                department: "Product",
                 name: "Ilmarinen Odin",
-                title: ""
+                title: "Director of Product"
               },
               employees: [
                 {
                   id: 131,
                   info: {
-                    department: "",
+                    department: "Design",
                     name: "Samael Mot",
-                    title: ""
+                    title: "Lead Designer"
                   },
                   employees: [
                     {
                       id: 1311,
                       info: {
-                        department: "",
+                        department: "Design",
                         name: "Kore Neptune",
-                        title: ""
+                        title: "Junior Designer"
                       },
                       employees: []
                     }
@@ -94,9 +94,9 @@ export default {
                 {
                   id: 132,
                   info: {
-                    department: "",
+                    department: "Operations",
                     name: "Erebos Onnophris",
-                    title: ""
+                    title: "Lead of Operations"
                   },
                   employees: []
                 }
@@ -105,26 +105,26 @@ export default {
             {
               id: 14,
               info: {
-                department: "",
+                department: "Customer Experience",
                 name: "Uttara Aoede",
-                title: ""
+                title: "Director of Customer Experience"
               },
               employees: [
                 {
                   id: 141,
                   info: {
-                    department: "",
+                    department: "Customer Experience",
                     name: "Vasanta Alfr",
-                    title: ""
+                    title: "CX Manager"
                   },
                   employees: []
                 },
                 {
                   id: 142,
                   info: {
-                    department: "",
+                    department: "Customer Experience",
                     name: "Venus Jagannatha",
-                    title: ""
+                    title: "Social Media Manager"
                   },
                   employees: []
                 }
@@ -133,18 +133,18 @@ export default {
             {
               id: 15,
               info: {
-                department: "",
+                department: "People Strategy",
                 name: "Cernunnos Hyacinth",
-                title: ""
+                title: "Director of Outreach"
               },
               employees: []
             },
             {
               id: 16,
               info: {
-                department: "",
+                department: "Human Resources",
                 name: "Vénus Netuno",
-                title: ""
+                title: "Director of Human Resources"
               },
               employees: []
             }
@@ -153,43 +153,43 @@ export default {
         {
           id: 2,
           info: {
-            department: "",
+            department: "Finance",
             name: "Halcyone Helle",
-            title: ""
+            title: "CCO"
           },
           employees: []
         },
         {
           id: 3,
           info: {
-            department: "",
+            department: "Marketing",
             name: "Aparna Volos",
-            title: ""
+            title: "CFO"
           },
           employees: [
             {
               id: 31,
               info: {
-                department: "",
+                department: "Marketing",
                 name: "Beowulf Ceres",
-                title: ""
+                title: "Intellectual Property Specialist"
               },
               employees: []
             },
             {
               id: 32,
               info: {
-                department: "",
+                department: "Marketing",
                 name: "Borghild Cupid",
-                title: ""
+                title: "Finance Controller"
               },
               employees: [
                 {
                   id: 321,
                   info: {
-                    department: "",
+                    department: "Marketing",
                     name: "Nettuno Dalia",
-                    title: ""
+                    title: "Accounts Payable Specialist"
                   },
                   employees: []
                 }
@@ -198,9 +198,9 @@ export default {
             {
               id: 33,
               info: {
-                department: "",
+                department: "Marketing",
                 name: "Minakshi Asar",
-                title: ""
+                title: "Treasurer"
               },
               employees: []
             }
