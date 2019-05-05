@@ -19,7 +19,10 @@ export default {
   props: {
     showEmployees: {
       type: Boolean,
-      required: true
+      required: true,
+      default() {
+        return false;
+      }
     },
     employeeInfo: {
       type: Object,

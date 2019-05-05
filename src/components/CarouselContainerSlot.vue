@@ -10,14 +10,14 @@
             :key="childEmployee.id"
             v-for="(childEmployee, index) in employees"
             :employeeInfo="childEmployee.info"
-            :showEmployees="false"
+            :showEmployees="!!mapEmployeeToggle[currentEmployeeIndex] && index === currentEmployeeIndex"
             @toggleEmployees="toggleEmployees(index)"
           />
         </EmployeeCardCarouselSlot>
       </slot>
     </div>
     <ad-carousel-container-slot
-      v-if="employeeContainsEmployees"
+      v-if="employeeContainsEmployees && !!mapEmployeeToggle[currentEmployeeIndex]"
       :containerName="currentEmployee.id"
       :employees="currentEmployee.employees"
     />
@@ -34,7 +34,7 @@ export default {
     containerName: {
       type: Number,
       default() {
-        return 0;
+        return Date.now();
       }
     },
     employees: {
@@ -46,7 +46,8 @@ export default {
   },
   data() {
     return {
-      currentEmployeeIndex: null
+      currentEmployeeIndex: null,
+      mapEmployeeToggle: {}
     };
   },
   components: {
@@ -56,6 +57,15 @@ export default {
   methods: {
     toggleEmployees(index) {
       this.currentEmployeeIndex = index;
+      if (!(index in this.mapEmployeeToggle)) {
+        this.$set(this.mapEmployeeToggle, index, true);
+      } else {
+        this.$set(
+          this.mapEmployeeToggle,
+          index,
+          !this.mapEmployeeToggle[index]
+        );
+      }
     }
   },
   computed: {
