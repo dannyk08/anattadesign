@@ -13,6 +13,7 @@ export default {
   },
   data() {
     return {
+      // needs to be reset
       company: companyEmployees.employees[0]
     };
   }
@@ -27,10 +28,12 @@ export default {
 </style>
 
 <style lang="scss">
+$white: white;
 $gray: gray;
 $green: #008f88;
 
 $variables-map: (
+  white-color: $white,
   gray-color: $gray,
   gray-color-light: lighten($gray, 10%),
   gray-color-lighter: lighten($gray, 25%),

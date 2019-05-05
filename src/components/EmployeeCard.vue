@@ -71,7 +71,7 @@ export default {
 
     &.active &-header {
       background: var(--node-header-background-color);
-      color: white;
+      color: var(--white-color);
       border-bottom-color: var(--node-header-background-color);
     }
 

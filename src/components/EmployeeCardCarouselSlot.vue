@@ -25,9 +25,6 @@ export default {
 <style lang="scss" scoped>
 .employee-card-carousel {
   display: flex;
-  // overflow-x: auto;
-  // width: 100%;
-  // justify-content: space-around;
   margin-top: var(--node-highlight-height);
   min-height: calc(
     var(--node-card-info-min-height) + calc(var(--node-highlight-height) * 2)
@@ -36,26 +33,13 @@ export default {
   max-width: 90%;
 
   &.should-rotate {
-    // position: relative;
-    // just for highlighting
     background: transparentize(crimson, 0.75);
     overflow: hidden;
-    // left: 1rem;
-    // min-width: 50vw;
-    // min-height: calc(
-    //   var(--node-card-info-min-height) + calc(var(--node-highlight-height) * 2)
-    // );
   }
 
   &.should-rotate &__container {
     overflow: auto;
     justify-content: flex-start;
-    // position: absolute;
-    // left: 0;
-    // padding: 0 2rem;
-    // right: 0;
-    // background: transparentize(crimson, 0.75);
-    // min-height: 100%;
   }
 
   &__container {
