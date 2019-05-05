@@ -1,12 +1,15 @@
 <template>
-  <div class="employee" :class="{'is-node': isNode}">
-    <EmployeeCard
+  <div
+    class="employee"
+    :class="{'is-node': isNode, 'holds-carousel': employee.employees.length && employee.employees.length > 3}"
+  >
+    <!-- <EmployeeCard
       @toggleEmployees="toggleEmployees()"
       :showEmployees="showEmployees"
       :employeeInfo="employee.info"
-    />
-    <EmployeeCarouselSlot
-      :isCarousel="!!employee.employees && !!employee.employees.length"
+    />-->
+    <!-- <EmployeeCarouselSlot
+      :isCarousel="employee.employees.length && employee.employees.length > 3"
       :slotName="{id}"
       v-if="employee.employees.length && showEmployees"
     >
@@ -17,18 +20,18 @@
         :employee="employee"
         :id="employee.id"
       />
-    </EmployeeCarouselSlot>
+    </EmployeeCarouselSlot>-->
   </div>
 </template>
 
 <script>
 import EmployeeCard from "./EmployeeCard.vue";
-import EmployeeCarouselSlot from "./EmployeeCarouselSlot.vue";
+// import EmployeeCarouselSlot from "./EmployeeCarouselSlot.vue";
 
 export default {
   name: "ad-employee",
   components: {
-    EmployeeCarouselSlot,
+    // EmployeeCarouselSlot,
     EmployeeCard
   },
   props: {
@@ -68,49 +71,54 @@ export default {
 
 <style lang="scss" scoped>
 .employee {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // flex: 1;
 
-  &.is-node {
-    padding-top: var(--node-highlight-height);
-    padding-bottom: var(--node-highlight-height);
-    position: relative;
-    flex: 1;
+  // &.holds-carousel {
+  //   overflow: auto;
+  // }
 
-    &::before {
-      content: "";
-      width: var(--node-border-height);
-      height: var(--node-highlight-height);
-      background: var(--gray-color-light);
-      position: absolute;
-      top: 0;
-      z-index: -1;
-      left: 50%;
-      transform: translateX(-50%);
-    }
+  // &.is-node {
+  //   padding-top: var(--node-highlight-height);
+  //   padding-bottom: var(--node-highlight-height);
+  //   position: relative;
+  //   flex: 1;
 
-    &::after {
-      content: "";
-      width: 100%;
-      top: 0;
-      height: var(--node-border-height);
-      background: var(--gray-color-light);
-      position: absolute;
-    }
+  //   &::before {
+  //     content: "";
+  //     width: var(--node-border-height);
+  //     height: var(--node-highlight-height);
+  //     background: var(--gray-color-light);
+  //     position: absolute;
+  //     top: 0;
+  //     z-index: -1;
+  //     left: 50%;
+  //     transform: translateX(-50%);
+  //   }
 
-    &:first-of-type::after {
-      width: 50%;
-      left: 50%;
-    }
-    &:last-of-type::after {
-      width: 50%;
-      right: 50%;
-    }
-    &:only-of-type::after {
-      width: 0;
-    }
-  }
+  //   &::after {
+  //     content: "";
+  //     width: 100%;
+  //     top: 0;
+  //     height: var(--node-border-height);
+  //     background: var(--gray-color-light);
+  //     position: absolute;
+  //   }
+
+  //   &:first-of-type::after {
+  //     width: 50%;
+  //     left: 50%;
+  //   }
+  //   &:last-of-type::after {
+  //     width: 50%;
+  //     right: 50%;
+  //   }
+  //   &:only-of-type::after {
+  //     width: 0;
+  //   }
+  // }
 }
 </style>
 

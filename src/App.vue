@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      company: companyEmployees
+      company: companyEmployees.employees[0]
     };
   }
 };
@@ -39,7 +39,8 @@ $variables-map: (
   green-color-lighter: lighten($green, 25%),
   node-highlight-height: 2rem,
   node-border-height: 1px,
-  node-header-background-color: $green
+  node-header-background-color: $green,
+  node-card-info-min-height: 12.5rem
 );
 
 :root {

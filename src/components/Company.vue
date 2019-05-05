@@ -1,24 +1,53 @@
 <template>
   <main class="company">
     <h1 class="company__name">Client Company</h1>
-    <EmployeeCarouselSlot
-      :isCarousel="!!company.employees && !!company.employees.length"
-      :slotName="carouselSlotName"
+    <div class="carousel-container">
+      <EmployeeCardCarouselSlot
+        :isCarousel="!!company.employees && company.employees.length > 3"
+        :slotName="carouselSlotName"
+      >
+        <!-- <Employee
+      :isNode="false"
+      v-for="employee in company.employees"
+      :key="employee.id"
+      :employee="employee"
+      :id="employee.id"
+        />-->
+        <!-- <EmployeeCards :slotName="carouselSlotName"/> -->
+        <EmployeeCard
+          :key="employee.id"
+          v-for="(employee, index) in company.employees"
+          :employeeInfo="employee.info"
+          :showEmployees="false"
+          @toggleEmployees="toggleEmployees(index)"
+        />
+      </EmployeeCardCarouselSlot>
+    </div>
+
+    <div
+      class="carousel-container"
+      v-if="clickedEmployee !== null && containsEmployees(company.employees[clickedEmployee])"
     >
-      <Employee
-        :isNode="false"
-        v-for="employee in company.employees"
-        :key="employee.id"
-        :employee="employee"
-        :id="employee.id"
-      />
-    </EmployeeCarouselSlot>
+      <EmployeeCardCarouselSlot
+        :isCarousel="!!company.employees[clickedEmployee].employees && company.employees[clickedEmployee].employees.length > 3"
+        :slotName="company.employees[clickedEmployee].id"
+      >
+        <EmployeeCard
+          :key="childEmployee.id"
+          v-for="childEmployee in company.employees[clickedEmployee].employees"
+          :employeeInfo="childEmployee.info"
+          :showEmployees="false"
+          @toggleEmployees="toggleEmployees(childEmployee.id)"
+        />
+      </EmployeeCardCarouselSlot>
+    </div>
   </main>
 </template>
 
 <script>
-import Employee from "./Employee.vue";
-import EmployeeCarouselSlot from "./EmployeeCarouselSlot.vue";
+import EmployeeCardCarouselSlot from "./EmployeeCardCarouselSlot.vue";
+import EmployeeCards from "./EmployeeCards.vue";
+import EmployeeCard from "./EmployeeCard.vue";
 
 export default {
   name: "ad-company",
@@ -37,8 +66,27 @@ export default {
     }
   },
   components: {
-    EmployeeCarouselSlot,
-    Employee
+    EmployeeCardCarouselSlot,
+    EmployeeCards,
+    EmployeeCard
+  },
+  data() {
+    return {
+      showEmployees: false,
+      clickedEmployee: null
+    };
+  },
+  methods: {
+    containsEmployees(employee = { employees: [] }) {
+      return employee.employees && !!employee.employees.length;
+    },
+    toggleEmployees(id) {
+      // if (this.employee.employees.length) {
+      // console.log({ event, clickedEmployee: this.clickedEmployee });
+      this.clickedEmployee = id;
+      this.showEmployees = !this.showEmployees;
+      // }
+    }
   }
 };
 </script>
@@ -51,6 +99,11 @@ export default {
   &__name {
     text-align: center;
   }
+}
+.carousel-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 </style>
 
