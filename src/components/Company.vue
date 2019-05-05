@@ -1,19 +1,11 @@
 <template>
   <main class="company">
     <h1 class="company__name">Client Company</h1>
-    <div class="carousel-container">
-      <EmployeeCardCarouselSlot
+    <CarouselContainerSlot :employee="company" :containerName="company.id">
+      <!-- <EmployeeCardCarouselSlot
         :isCarousel="!!company.employees && company.employees.length > 3"
         :slotName="carouselSlotName"
       >
-        <!-- <Employee
-      :isNode="false"
-      v-for="employee in company.employees"
-      :key="employee.id"
-      :employee="employee"
-      :id="employee.id"
-        />-->
-        <!-- <EmployeeCards :slotName="carouselSlotName"/> -->
         <EmployeeCard
           :key="employee.id"
           v-for="(employee, index) in company.employees"
@@ -21,26 +13,8 @@
           :showEmployees="false"
           @toggleEmployees="toggleEmployees(index)"
         />
-      </EmployeeCardCarouselSlot>
-    </div>
-
-    <div
-      class="carousel-container"
-      v-if="clickedEmployee !== null && containsEmployees(company.employees[clickedEmployee])"
-    >
-      <EmployeeCardCarouselSlot
-        :isCarousel="!!company.employees[clickedEmployee].employees && company.employees[clickedEmployee].employees.length > 3"
-        :slotName="company.employees[clickedEmployee].id"
-      >
-        <EmployeeCard
-          :key="childEmployee.id"
-          v-for="childEmployee in company.employees[clickedEmployee].employees"
-          :employeeInfo="childEmployee.info"
-          :showEmployees="false"
-          @toggleEmployees="toggleEmployees(childEmployee.id)"
-        />
-      </EmployeeCardCarouselSlot>
-    </div>
+      </EmployeeCardCarouselSlot>-->
+    </CarouselContainerSlot>
   </main>
 </template>
 
@@ -48,6 +22,7 @@
 import EmployeeCardCarouselSlot from "./EmployeeCardCarouselSlot.vue";
 import EmployeeCards from "./EmployeeCards.vue";
 import EmployeeCard from "./EmployeeCard.vue";
+import CarouselContainerSlot from "./CarouselContainerSlot.vue";
 
 export default {
   name: "ad-company",
@@ -68,7 +43,8 @@ export default {
   components: {
     EmployeeCardCarouselSlot,
     EmployeeCards,
-    EmployeeCard
+    EmployeeCard,
+    CarouselContainerSlot
   },
   data() {
     return {

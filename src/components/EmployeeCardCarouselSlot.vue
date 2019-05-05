@@ -1,6 +1,6 @@
 <template slot="slotName">
-  <section class="employee-card-carousel" :class="{'should-rotate': isCarousel}">
-    <main class="employee-card-carousel__container">
+  <section class="employee-card-carousel-slot" :class="{'should-rotate': isCarousel}">
+    <main class="employee-card-carousel-slot__container">
       <slot></slot>
     </main>
   </section>
@@ -23,7 +23,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.employee-card-carousel {
+.employee-card-carousel-slot {
   display: flex;
   margin-top: var(--node-highlight-height);
   min-height: calc(
