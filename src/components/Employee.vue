@@ -5,28 +5,39 @@
       :showEmployees="showEmployees"
       :employeeInfo="employee.info"
     />
-    <main v-if="employee.employees.length && showEmployees" class="employee__employees">
+    <EmployeeCarouselSlot
+      :isCarousel="!!employee.employees && !!employee.employees.length"
+      :slotName="{id}"
+      v-if="employee.employees.length && showEmployees"
+    >
       <ad-employee
         :isNode="true"
         v-for="employee in employee.employees"
         :key="employee.id"
         :employee="employee"
+        :id="employee.id"
       />
-    </main>
+    </EmployeeCarouselSlot>
   </div>
 </template>
 
 <script>
 import EmployeeCard from "./EmployeeCard.vue";
+import EmployeeCarouselSlot from "./EmployeeCarouselSlot.vue";
 
 export default {
   name: "ad-employee",
   components: {
+    EmployeeCarouselSlot,
     EmployeeCard
   },
   props: {
     isNode: {
       type: Boolean,
+      required: true
+    },
+    id: {
+      type: Number,
       required: true
     },
     employee: {
@@ -99,14 +110,6 @@ export default {
     &:only-of-type::after {
       width: 0;
     }
-  }
-
-  &__employees {
-    display: flex;
-    overflow-x: auto;
-    width: 100%;
-    justify-content: space-around;
-    margin-top: var(--node-highlight-height);
   }
 }
 </style>
