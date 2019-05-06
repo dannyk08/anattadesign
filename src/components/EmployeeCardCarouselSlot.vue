@@ -9,7 +9,7 @@
       v-if="isCarousel"
       @click="shiftCarousel('left')"
     >
-      <h3>&lt;</h3>
+      <font-awesome-icon icon="arrow-left"/>
     </div>
     <main
       class="employee-card-carousel-slot__container"
@@ -32,7 +32,7 @@
       v-if="isCarousel"
       @click="shiftCarousel('right')"
     >
-      <h3>&gt;</h3>
+      <font-awesome-icon icon="arrow-right"/>
     </div>
   </section>
 </template>
@@ -149,6 +149,9 @@ $control-square-dimension: 4rem;
     min-width: $control-square-dimension;
     text-align: center;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__controls.control-left {

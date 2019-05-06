@@ -12,9 +12,24 @@
         <h5 class="employee-card__info-main--name">{{employee.info.name}}</h5>
         <p class="employee-card__info-main--title">{{employee.info.title}}</p>
       </main>
-      <footer>
-        <p>employees: {{getTotalEmployees(employee)}}</p>
-        <p>reporting total: {{totalReporting}}</p>
+      <footer class="employee-card__info-footer">
+        <div class="employee-card__info-footer-icon">
+          <span>
+            <font-awesome-icon icon="network-wired"/>
+          </span>
+          <span>{{getTotalEmployees}}</span>
+        </div>
+        <div class="employee-card__info-footer-icon">
+          <span>
+            <font-awesome-icon icon="user"/>
+          </span>
+          <span>{{totalReporting}}</span>
+        </div>
+        <div v-if="getTotalEmployees" class="employee-card__info-footer-icon">
+          <span>
+            <font-awesome-icon icon="plus-circle"/>
+          </span>
+        </div>
       </footer>
     </div>
   </section>
@@ -51,15 +66,15 @@ export default {
   },
   methods: {
     toggleEmployees() {
-      if (this.getTotalEmployees(this.employee)) {
+      if (this.getTotalEmployees) {
         this.$emit("toggleEmployees");
       }
-    },
-    getTotalEmployees(employee) {
-      return employee.employees.length;
     }
   },
   computed: {
+    getTotalEmployees() {
+      return this.employee.employees.length;
+    },
     totalReporting() {
       function totalReportingEmployeesReducer(prev, next) {
         return prev + totalReport(next);
@@ -182,15 +197,31 @@ $card-sibling-margin: 1rem;
     }
 
     &-main {
-      min-height: 3rem;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      flex: 1;
     }
 
     &-main--title {
       margin-top: -0.5rem;
       color: var(--gray-color-light);
+    }
+
+    &-footer {
+      min-height: 4.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &-footer-icon {
+      display: flex;
+      flex-direction: column;
+      min-width: 3rem;
+      min-height: 3rem;
+      justify-content: space-evenly;
+      align-items: center;
     }
   }
 }
