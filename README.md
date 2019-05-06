@@ -22,4 +22,4 @@ yarn run lint
 
 The application renders the data coming from the `company.js` file. It can be found in `src/company.js`
 
-> You can add and modify the data, once the app is started in dev mode, one can see how it dynamically updated the tree structure
+> You can modify the data in the file, once the app is started in dev mode, one can see how it dynamically updates the tree structure
