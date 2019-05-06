@@ -4,7 +4,7 @@
 
 <script>
 import Company from "./components/Company.vue";
-import company from "./companyEmployees";
+import company from "./company";
 
 export default {
   name: "anatta-design-app",

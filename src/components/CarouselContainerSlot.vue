@@ -1,5 +1,5 @@
 <template slot="nodeId">
-  <div>
+  <div class="carousel-container">
     <div class="carousel-container-slot">
       <slot>
         <EmployeeCardCarouselSlot
@@ -104,10 +104,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.carousel-container-slot {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.carousel-container {
+  flex: 1;
+  min-height: 100%;
+  overflow: auto;
+
+  &-slot {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 </style>
 
