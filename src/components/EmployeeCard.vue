@@ -6,12 +6,16 @@
       @click="toggleEmployees()"
     >
       <header class="employee-card__info-header">
-        <h5>{{employeeInfo.department}}</h5>
+        <h5>{{employee.info.department}}</h5>
       </header>
       <main class="employee-card__info-main">
-        <h5 class="employee-card__info-main--name">{{employeeInfo.name}}</h5>
-        <p class="employee-card__info-main--title">{{employeeInfo.title}}</p>
+        <h5 class="employee-card__info-main--name">{{employee.info.name}}</h5>
+        <p class="employee-card__info-main--title">{{employee.info.title}}</p>
       </main>
+      <footer>
+        <p>employees: {{getTotalEmployees(employee)}}</p>
+        <p>reporting total: {{totalReporting}}</p>
+      </footer>
     </div>
   </section>
 </template>
@@ -28,9 +32,15 @@ export default {
         return false;
       }
     },
-    employeeInfo: {
+    employee: {
       type: Object,
-      required: true
+      required: true,
+      default() {
+        return {
+          info: {},
+          employees: []
+        };
+      }
     },
     isNode: {
       type: Boolean,
@@ -41,7 +51,28 @@ export default {
   },
   methods: {
     toggleEmployees() {
-      this.$emit("toggleEmployees");
+      if (this.getTotalEmployees(this.employee)) {
+        this.$emit("toggleEmployees");
+      }
+    },
+    getTotalEmployees(employee) {
+      return employee.employees.length;
+    }
+  },
+  computed: {
+    totalReporting() {
+      function totalReportingEmployeesReducer(prev, next) {
+        return prev + totalReport(next);
+      }
+
+      function totalReport(employee) {
+        return employee.employees.reduce(
+          totalReportingEmployeesReducer,
+          employee.employees.length
+        );
+      }
+
+      return totalReport(this.employee);
     }
   }
 };

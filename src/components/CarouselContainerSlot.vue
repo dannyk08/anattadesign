@@ -10,9 +10,9 @@
           <EmployeeCard
             :key="childEmployee.id"
             v-for="(childEmployee, index) in employees"
-            :employeeInfo="childEmployee.info"
             :showEmployees="!!mapEmployeeToggle[selectedEmployeeIndex] && index === selectedEmployeeIndex"
             :isNode="isNode"
+            :employee="childEmployee"
             @toggleEmployees="toggleEmployees(index)"
           />
         </EmployeeCardCarouselSlot>
@@ -70,18 +70,15 @@ export default {
   methods: {
     toggleEmployees(index) {
       this.selectedEmployeeIndex = index;
-      let nodeWithEmployees =
-        this.employees[index] && this.employees[index].employees.length;
-      if (nodeWithEmployees) {
-        if (!(index in this.mapEmployeeToggle)) {
-          this.$set(this.mapEmployeeToggle, index, true);
-        } else {
-          this.$set(
-            this.mapEmployeeToggle,
-            index,
-            !this.mapEmployeeToggle[index]
-          );
-        }
+
+      if (!(index in this.mapEmployeeToggle)) {
+        this.$set(this.mapEmployeeToggle, index, true);
+      } else {
+        this.$set(
+          this.mapEmployeeToggle,
+          index,
+          !this.mapEmployeeToggle[index]
+        );
       }
     }
   },
