@@ -1,29 +1,25 @@
-# anatta-design
+# Anatta Design
 
 ## Project setup
-```
-yarn install
-```
 
-### Compiles and hot-reloads for development
 ```
-yarn run serve
+yarn start
 ```
 
 ### Compiles and minifies for production
+
 ```
 yarn run build
 ```
 
-### Run your tests
-```
-yarn run test
-```
-
 ### Lints and fixes files
+
 ```
 yarn run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Application Data
+
+The application renders the data coming from the `company.js` file. It can be found in `src/company.js`
+
+> You can add and modify the data, once the app is started in dev mode, one can see how it dynamically updated the tree structure
