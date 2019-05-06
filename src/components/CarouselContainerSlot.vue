@@ -3,14 +3,15 @@
     <div class="carousel-container-slot">
       <slot>
         <EmployeeCardCarouselSlot
-          :slotName="currentEmployee.id"
+          :slotName="cardCarouselName"
           :isCarousel="!!employees && employees.length > 3"
+          :cardsTotal="employees && employees.length"
         >
           <EmployeeCard
             :key="childEmployee.id"
             v-for="(childEmployee, index) in employees"
             :employeeInfo="childEmployee.info"
-            :showEmployees="!!mapEmployeeToggle[currentEmployeeIndex] && index === currentEmployeeIndex"
+            :showEmployees="!!mapEmployeeToggle[selectedEmployeeIndex] && index === selectedEmployeeIndex"
             :isNode="isNode"
             @toggleEmployees="toggleEmployees(index)"
           />
@@ -18,15 +19,17 @@
       </slot>
     </div>
     <ad-carousel-container-slot
-      v-if="employeeContainsEmployees && !!mapEmployeeToggle[currentEmployeeIndex]"
-      :nodeId="currentEmployee.id"
-      :employees="currentEmployee.employees"
+      v-if="employeeContainsEmployees && !!mapEmployeeToggle[selectedEmployeeIndex]"
+      :nodeId="selectedEmployee.id"
+      :employees="selectedEmployee.employees"
       :isNode="true"
     />
   </div>
 </template>
 
 <script>
+import uniqid from "uniqid";
+
 import EmployeeCardCarouselSlot from "./EmployeeCardCarouselSlot.vue";
 import EmployeeCard from "./EmployeeCard.vue";
 
@@ -55,8 +58,9 @@ export default {
   },
   data() {
     return {
-      currentEmployeeIndex: null,
-      mapEmployeeToggle: {}
+      selectedEmployeeIndex: null,
+      mapEmployeeToggle: {},
+      cardCarouselName: uniqid()
     };
   },
   components: {
@@ -65,7 +69,7 @@ export default {
   },
   methods: {
     toggleEmployees(index) {
-      this.currentEmployeeIndex = index;
+      this.selectedEmployeeIndex = index;
       let nodeWithEmployees =
         this.employees[index] && this.employees[index].employees.length;
       if (nodeWithEmployees) {
@@ -82,20 +86,20 @@ export default {
     }
   },
   computed: {
-    currentEmployee() {
-      if (this.currentEmployeeIndex === null) {
+    selectedEmployee() {
+      if (this.selectedEmployeeIndex === null) {
         return {
           employees: [],
           id: null
         };
       }
-      return this.employees[this.currentEmployeeIndex];
+      return this.employees[this.selectedEmployeeIndex];
     },
     employeeContainsEmployees() {
-      if (this.currentEmployeeIndex === null) return false;
+      if (this.selectedEmployeeIndex === null) return false;
       return (
-        this.currentEmployee.employees &&
-        !!this.currentEmployee.employees.length
+        this.selectedEmployee.employees &&
+        !!this.selectedEmployee.employees.length
       );
     }
   }

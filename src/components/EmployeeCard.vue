@@ -100,6 +100,7 @@ $card-sibling-margin: 1rem;
     box-shadow: 0rem 1rem 1rem -1.5rem var(--gray-color-lighter),
       0rem 0.25rem 1rem -0.5rem var(--gray-color);
     z-index: 1;
+    border-radius: calc(var(--node-border-height) * 2);
 
     &.active::after {
       content: "";
@@ -124,8 +125,6 @@ $card-sibling-margin: 1rem;
     }
 
     &.is-node {
-      background: darken(whitesmoke, 10%);
-
       &::before {
         content: "";
         width: var(--node-border-height);
