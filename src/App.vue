@@ -4,7 +4,7 @@
 
 <script>
 import Company from "./components/Company.vue";
-import companyEmployees from "./companyEmployees";
+import company from "./company";
 
 export default {
   name: "anatta-design-app",
@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      company: companyEmployees
+      company
     };
   }
 };
@@ -27,10 +27,12 @@ export default {
 </style>
 
 <style lang="scss">
+$white: white;
 $gray: gray;
 $green: #008f88;
 
 $variables-map: (
+  white-color: $white,
   gray-color: $gray,
   gray-color-light: lighten($gray, 10%),
   gray-color-lighter: lighten($gray, 25%),
@@ -39,7 +41,9 @@ $variables-map: (
   green-color-lighter: lighten($green, 25%),
   node-highlight-height: 2rem,
   node-border-height: 1px,
-  node-header-background-color: $green
+  node-header-background-color: $green,
+  node-card-info-min-height: 12.5rem,
+  node-card-min-width: 17.5rem
 );
 
 :root {

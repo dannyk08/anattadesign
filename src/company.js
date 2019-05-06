@@ -1,4 +1,5 @@
 export default {
+  name: "Boring Company",
   employees: [
     {
       id: 0,

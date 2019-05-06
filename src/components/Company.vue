@@ -1,44 +1,30 @@
 <template>
   <main class="company">
-    <h1 class="company__name">Client Company</h1>
-    <EmployeeCarouselSlot
-      :isCarousel="!!company.employees && !!company.employees.length"
-      :slotName="carouselSlotName"
-    >
-      <Employee
-        :isNode="false"
-        v-for="employee in company.employees"
-        :key="employee.id"
-        :employee="employee"
-        :id="employee.id"
-      />
-    </EmployeeCarouselSlot>
+    <h1 class="company__name">{{company.name}}</h1>
+
+    <CarouselContainerSlot :employees="company.employees"/>
   </main>
 </template>
 
 <script>
-import Employee from "./Employee.vue";
-import EmployeeCarouselSlot from "./EmployeeCarouselSlot.vue";
+import CarouselContainerSlot from "./CarouselContainerSlot.vue";
 
 export default {
   name: "ad-company",
   props: {
     company: {
       type: Object,
-      required: true
-    },
-    carouselSlotName: {
-      type: Object,
+      required: true,
       default() {
         return {
-          name: "carouselSlotName"
+          name: "",
+          employees: []
         };
       }
     }
   },
   components: {
-    EmployeeCarouselSlot,
-    Employee
+    CarouselContainerSlot
   }
 };
 </script>
@@ -47,6 +33,7 @@ export default {
 .company {
   display: flex;
   flex-direction: column;
+  flex: 1;
 
   &__name {
     text-align: center;
