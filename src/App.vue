@@ -42,7 +42,8 @@ $variables-map: (
   node-highlight-height: 2rem,
   node-border-height: 1px,
   node-header-background-color: $green,
-  node-card-info-min-height: 12.5rem
+  node-card-info-min-height: 12.5rem,
+  node-card-min-width: 17.5rem
 );
 
 :root {

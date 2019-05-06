@@ -25,10 +25,6 @@ export default {
 <style lang="scss" scoped>
 .employee-card-carousel-slot {
   display: flex;
-  margin-top: var(--node-highlight-height);
-  min-height: calc(
-    var(--node-card-info-min-height) + calc(var(--node-highlight-height) * 2)
-  );
   min-width: 90%;
   max-width: 90%;
 

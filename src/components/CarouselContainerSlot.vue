@@ -1,4 +1,4 @@
-<template slot="containerName">
+<template slot="nodeId">
   <div>
     <div class="carousel-container-slot">
       <slot>
@@ -11,6 +11,7 @@
             v-for="(childEmployee, index) in employees"
             :employeeInfo="childEmployee.info"
             :showEmployees="!!mapEmployeeToggle[currentEmployeeIndex] && index === currentEmployeeIndex"
+            :isNode="isNode"
             @toggleEmployees="toggleEmployees(index)"
           />
         </EmployeeCardCarouselSlot>
@@ -18,8 +19,9 @@
     </div>
     <ad-carousel-container-slot
       v-if="employeeContainsEmployees && !!mapEmployeeToggle[currentEmployeeIndex]"
-      :containerName="currentEmployee.id"
+      :nodeId="currentEmployee.id"
       :employees="currentEmployee.employees"
+      :isNode="true"
     />
   </div>
 </template>
@@ -31,16 +33,23 @@ import EmployeeCard from "./EmployeeCard.vue";
 export default {
   name: "ad-carousel-container-slot",
   props: {
-    containerName: {
+    employees: {
+      type: Array,
+      required: true,
+      default() {
+        return [];
+      }
+    },
+    nodeId: {
       type: Number,
       default() {
         return Date.now();
       }
     },
-    employees: {
-      type: Array,
+    isNode: {
+      type: Boolean,
       default() {
-        return [];
+        return false;
       }
     }
   },
@@ -57,14 +66,18 @@ export default {
   methods: {
     toggleEmployees(index) {
       this.currentEmployeeIndex = index;
-      if (!(index in this.mapEmployeeToggle)) {
-        this.$set(this.mapEmployeeToggle, index, true);
-      } else {
-        this.$set(
-          this.mapEmployeeToggle,
-          index,
-          !this.mapEmployeeToggle[index]
-        );
+      let nodeWithEmployees =
+        this.employees[index] && this.employees[index].employees.length;
+      if (nodeWithEmployees) {
+        if (!(index in this.mapEmployeeToggle)) {
+          this.$set(this.mapEmployeeToggle, index, true);
+        } else {
+          this.$set(
+            this.mapEmployeeToggle,
+            index,
+            !this.mapEmployeeToggle[index]
+          );
+        }
       }
     }
   },
