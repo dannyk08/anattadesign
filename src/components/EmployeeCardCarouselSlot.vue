@@ -1,5 +1,9 @@
 <template slot="slotName">
-  <section class="employee-card-carousel-slot" :class="{'should-rotate': isCarousel}">
+  <section
+    class="employee-card-carousel-slot"
+    :class="{'should-rotate': isCarousel}"
+    :style="{'max-width': maxCarouselContainerWidth}"
+  >
     <div
       class="employee-card-carousel-slot__controls control-left"
       v-if="isCarousel"
@@ -100,13 +104,15 @@ $control-square-dimension: 4rem;
   display: flex;
   width: 100%;
   position: relative;
-  min-height: calc(
-    var(--node-card-info-min-height) + calc(var(--node-highlight-height) * 2)
-  );
   flex: 1;
 
+  &.should-rotate {
+    min-height: calc(
+      var(--node-card-info-min-height) + calc(var(--node-highlight-height) * 3)
+    );
+  }
+
   &.should-rotate &__container {
-    background: transparentize(crimson, 0.875);
     overflow: hidden;
     justify-content: flex-start;
     position: relative;
@@ -142,18 +148,15 @@ $control-square-dimension: 4rem;
     min-height: $control-square-dimension;
     min-width: $control-square-dimension;
     text-align: center;
-    background: var(--white-color);
-    border-radius: 50%;
-    border: 1px solid var(--gray-color);
     cursor: pointer;
   }
 
   &__controls.control-left {
-    left: $control-square-dimension;
+    left: -1 * $control-square-dimension;
   }
 
   &__controls.control-right {
-    right: $control-square-dimension;
+    right: -1 * $control-square-dimension;
   }
 }
 </style>
