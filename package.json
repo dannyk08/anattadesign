@@ -6,6 +6,7 @@
     "prestart": "yarn || npm i",
     "start": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "test": "echo \"testing tests\"",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
