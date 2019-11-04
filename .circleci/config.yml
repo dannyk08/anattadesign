@@ -32,12 +32,14 @@ jobs:
 
       - run: yarn install
 
+      # run tests!
+      - run: yarn test
+
+      - run: yarn build
+
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: yarn test
-
-      - run: yarn build
+      - run: scp -o StrictHostKeyChecking=no -r ./.example/* circleci@dannys.io:
