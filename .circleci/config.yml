@@ -42,4 +42,4 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      - run: scp -o StrictHostKeyChecking=no -r ./.example/* circleci@dannys.io:
+      - run: scp -o StrictHostKeyChecking=no -r ./dist/* circleci@dannys.io://home/circleci/.example/
